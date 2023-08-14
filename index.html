@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="styles.css">
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+  }
+  #container {
+    margin: 50px auto;
+    width: 300px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+</style>
+<title>Temperature Coverter</title>
+</head>
+<body>
+<div id="container">
+  <h1>Temprature Converter</h1>
+  <label for="temperature">Enter temperature:</label>
+  <input type="text" id="temperature" placeholder="Enter temperature">
+  
+  <label for="unit">Select unit:</label>
+  <select id="unit">
+    <option value="celsius">Celsius</option>
+    <option value="fahrenheit">Fahrenheit</option>
+  </select>
+  
+  <button id="convertBtn">Convert</button>
+  
+  <div id="result"></div>
+</div>
+
+<!-- Javascript code -->
+<script>
+document.getElementById("convertBtn").addEventListener("click", function() {
+  const temperatureInput = parseFloat(document.getElementById("temperature").value);
+  const unitSelect = document.getElementById("unit").value;
+  let convertedTemperature;
+  let resultUnit;
+
+  if (isNaN(temperatureInput)) {
+    document.getElementById("result").textContent = "Please enter a valid number";
+    return;
+  }
+
+  if (unitSelect === "celsius") {
+    convertedTemperature = (temperatureInput - 32) * 5/9;
+    resultUnit = "Celsius";
+  } else {
+    convertedTemperature = (temperatureInput * 9/5) + 32;
+    resultUnit = "Fahrenheit";
+  }
+
+  document.getElementById("result").textContent = `Converted temperature: ${convertedTemperature.toFixed(2)} ${resultUnit}`;
+});
+</script>
+</body>
+</html>
